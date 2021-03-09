@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .ul{
+            display: flex;
+            flex-direction: row;
+            font-size: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .list{
+            margin: 0px 14px;
+            list-style: none;
+            
+        }
+        .list a{
+            color: antiquewhite;
+            text-decoration: none;
+        }
+        .list a:hover{
+            padding-bottom: 3px;
+            border-bottom: 1px solid antiquewhite;
+        }
+        .navbar{
+            padding: 18px 0px;
+            background-color: rgba(22, 22, 53, 0.801);
+            border-bottom: 1px solid rgba(245, 245, 245, 0.712);
+        }
+        .search{
+            position: absolute;
+            right: 1%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .search input{
+            height: 2rem;
+            font-size: 20px;
+            width: 17rem;
+            margin-right: 8px;
+            border: 1px solid orange;
+            border-radius: 9px;
+        }
+        .search-btn{
+            font-size: 20px;
+            background-color: rgb(245, 54, 40);
+            padding: 7px 12px;
+            border: 1px solid green;
+            cursor: pointer;
+            border-radius: 4px;
+            color: aliceblue;
+            margin-right: 4px;
+        }
+        .search-btn:hover{
+            background-color: rgb(255, 112, 112);
+        }
+        .login{
+            font-size: 20px;
+            color: rgb(0, 0, 0);
+            background-color: yellowgreen;
+            padding: 5px 8px;
+            border: 1px solid brown;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 0px 4px;
+        }
+        .login:hover{
+            background-color: rgb(192, 233, 111);
+        }
+        .loginm{
+            display: none;
+            background-color: rgb(22, 22, 53);
+            position: absolute;
+            right: 0;
+            left: 0;
+            margin: auto;
+            z-index: 10;
+            margin-top: 10px;
+            height: 30%;
+            width: 25%;
+            border-radius: 10px;
+            border: 2px solid black;
+            text-align: center;
+            box-shadow: 0px 0px 1px 100rem rgba(0, 0, 0, 0.6);
+        }
+        .loginm form h2{
+            margin: 8px 0px;
+        }
+        .loginm form label{
+            font-size: 20px;
+            padding: 5px 16px;
+        }
+        .loginm form input{
+            font-size: 17px;
+            padding: 5px 16px;
+            margin: 10px 0px;
+            border: 1px solid black;
+            border-radius: 8px;
+            width: 70%;
+        }
+        .log-btn{
+            margin-top: 10px;
+            padding: 5px 7px;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 19px;
+        }
+        .signinm{
+            display: none;
+        }
+
+    </style>
+    {% block css %}{% endblock %}
+    {% load static %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="ul">
+            <li class="list"><a href="/">Home</a> </li>
+            <li class="list"><a href="/library">Library</a> </li>
+            <li class="list"><a href="/library"><img height="60px" width="80px" src="/static/lib/logo.png" alt=""></a></li>
+            <li class="list"><a href="/library/about">About Us</a> </li>
+            <li class="list"><a href="/library/contact">Contact Us</a> </li>
+            <div class="search">
+                <form action="/library/search" method="GET">
+                    <input type="text" name="query">
+                    <button type="submit" class="search-btn"><h4>Search</h4></button>
+                </form>
+                {% if user.is_authenticated %}
+                <h4 style="color: antiquewhite; padding: 0px 4px;">Welcome {{request.user}}</h4>
+                <a href="logout" id="logout" class="login">Logout</a>
+                {% else %}
+                <button id="login" class="login">Login</button>
+                <button id="signin" class="login">Sign Up</button>
+                {% endif %}
+            </div>
+        </ul>
+    </nav>
+    <div id="mlogin" class="loginm">
+        <form action="login" method="POST">{% csrf_token %}
+            <div style="display: flex;justify-content: center;align-items: center;">
+                <h2 style="color: antiquewhite;">Login Now</h2><span style="position: absolute;right: 5%;font-size: 24px;cursor: pointer; color: antiquewhite;" class="close">&#10006;</span>
+            </div>
+            <hr>
+            <div style="margin-top: 10px;">
+                <label for="user1">Username</label>
+                <input placeholder="Enter Your Username" type="text" name="user1" id="user1">
+            </div>
+            <div>
+                <label for="pass1">Password</label>
+                <input placeholder="Enter Your Password" type="text" name="pass1" id="pass1">
+            </div>
+            <button class="log-btn" type="submit">Login</button>
+        </form>
+    </div>
+    <div style="height: 39%;" id="msignin" class="loginm">
+        <form action="signin" method="POST">{% csrf_token %}
+            <div style="display: flex;justify-content: center;align-items: center;">
+                <h2 style="color: antiquewhite;">SignUp Now</h2><span style="position: absolute;right: 5%;font-size: 24px;cursor: pointer; color: antiquewhite;" class="close1">&#10006;</span>
+            </div>
+            <hr>
+            <div style="margin-top: 10px;">
+                <label for="user2">Username</label>
+                <input placeholder="Enter Your Username" type="text" name="user2" id="user2">
+            </div>
+            <div>
+                <label for="pass2">Password</label>
+                <input placeholder="Choose A Password" type="text" name="pass2" id="pass2">
+            </div>
+            <div>
+                <label for="cpass2">Confirm Password</label>
+                <input placeholder="Enter Password Again" type="text" name="cpass2" id="cpass2">
+            </div>
+            <button class="log-btn" type="submit">Sign Up</button>
+        </form>
+    </div>
+    <div id="message-box1" style="background-color: rgba(22, 22, 53 ,0.801); display: none;">
+        <div style="background-color: yellow; margin-left: 18%; border-radius: 10px; padding-left: 20px; display: inline-flex;  align-items: center; font-size: 19px; padding-top: 8px; padding-bottom: 8px; padding-right: 17px;">
+            <b style="margin-right: 4px;">Message :</b><p id="mess-para" style="margin-left: 2px;"></p>
+        </div>
+    </div>
+    <div id="message-box" style="background-color: rgba(22, 22, 53 ,0.801);">
+        {% for message in messages %}
+        <div style="background-color: yellow; margin-left: 18%; border-radius: 10px; padding-left: 20px; display: inline-flex;  align-items: center; font-size: 19px; padding-top: 8px; padding-bottom: 8px; padding-right: 17px;">
+            <b style="margin-right: 4px;">Message :</b><p style="margin-left: 2px;">{{message}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% block body %}{% endblock %}
+</body>
+<script>if(document.getElementById('login')!=undefined)
+    {
+        document.getElementById('login').addEventListener('click',()=>{
+            document.getElementById('mlogin').style.display='block';
+        })
+    }
+    if(document.getElementById('login')!=undefined)
+    {
+        document.getElementById('signin').addEventListener('click',()=>{
+            document.getElementById('msignin').style.display='block';
+        })
+    }
+    document.querySelector('.close').addEventListener('click',()=>{
+        document.getElementById('msignin').style.display='none';
+        document.getElementById('mlogin').style.display='none';
+    })
+    document.querySelector('.close1').addEventListener('click',()=>{
+        document.getElementById('msignin').style.display='none';
+        document.getElementById('mlogin').style.display='none';
+    })
+    
+    document.addEventListener('mouseup',(e)=>{
+        let tar=document.getElementById('mlogin');
+        let tar1=document.getElementById('msignin');
+        if(!tar.contains(e.target) && !tar1.contains(e.target))
+        {
+            document.getElementById('mlogin').style.display='none';
+            document.getElementById('msignin').style.display='none';
+        }
+    })
+    document.addEventListener('mouseup',(e)=>{
+    let mess=document.getElementById('message-box');
+    let mess1=document.getElementById('message-box1');
+    if(!mess.contains(e.target) && !mess1.contains(e.target))
+    {
+        document.getElementById('message-box').style.display='none';
+        document.getElementById('message-box1').style.display='none';
+    }
+})
+    </script>
+{% block js %}{% endblock %}
+</html>

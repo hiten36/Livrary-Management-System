@@ -1,0 +1,43 @@
+{% extends 'lms/basic.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'lms/style.css' %}">
+{% endblock %}
+{% block body %}
+<div class="main">
+    <h1>Welcome to LMS (Library Management System)</h1>
+    <p>You can issue books and can also donate books.This website contains User Authentication with bare Minimum functionality to ensure your privacy.</p>
+    <button class="go-btn"><h4>Go to library</h4></button>
+</div>
+<div class="box1 box11">
+    <div class="text t1">
+        <p>“I love books. I adore everything about them. I love the feel of the pages on my fingertips. They are light enough to carry, yet so heavy with worlds and ideas. I love the sound of the pages flicking against my fingers. Print against fingerprints. Books make people quiet, yet they are so loud.”</p>
+        <button class="go-btn"><h4>Explore</h4></button>
+    </div>
+    <div class="img i1">
+        <img src="{% static 'lms/p1.png' %}" alt="">
+    </div>
+</div>
+<div class="box1">
+    <div class="img i2">
+        <img src="{% static 'lms/p2.png' %}" alt="">
+    </div>
+    <div class="text t2">
+        <p>“For some of us, books are as important as almost anything else on earth. What a miracle it is that out of these small, flat, rigid squares of paper unfolds world after world after world, worlds that sing to you, comfort and quiet or excite you. Books help us understand who we are and how we are to behave. They show us what community and friendship mean; they show us how to live and die.”</p>
+        <button class="go-btn"><h4>Explore</h4></button>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'lms/script.js' %}"></script>
+<script>
+    let b=document.querySelectorAll('.go-btn');
+    for(i of b)
+    {
+        i.addEventListener('click',()=>{
+            window.location='/library';
+        })
+    }
+</script>
+{% endblock %}

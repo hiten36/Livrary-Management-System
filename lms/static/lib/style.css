@@ -1,0 +1,253 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.ul{
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.list{
+    margin: 0px 14px;
+    list-style: none;
+    
+}
+.list a{
+    color: antiquewhite;
+    text-decoration: none;
+}
+.list a:hover{
+    padding-bottom: 3px;
+    border-bottom: 1px solid antiquewhite;
+}
+.navbar{
+    padding: 18px 0px;
+    background-color: rgba(22, 22, 53, 0.801);
+    border-bottom: 1px solid rgba(245, 245, 245, 0.712);
+}
+.search{
+    position: absolute;
+    right: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.search input{
+    height: 2rem;
+    font-size: 20px;
+    width: 17rem;
+    margin-right: 8px;
+    border: 1px solid orange;
+    border-radius: 9px;
+}
+.search-btn{
+    font-size: 20px;
+    background-color: rgb(245, 54, 40);
+    padding: 7px 12px;
+    border: 1px solid green;
+    cursor: pointer;
+    border-radius: 4px;
+    color: aliceblue;
+    margin-right: 4px;
+}
+.search-btn:hover{
+    background-color: rgb(255, 112, 112);
+}
+.login{
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    background-color: yellowgreen;
+    padding: 5px 8px;
+    border: 1px solid brown;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 0px 4px;
+}
+.login:hover{
+    background-color: rgb(192, 233, 111);
+}
+.loginm{
+    display: none;
+    background-color: rgb(22, 22, 53);
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+    z-index: 10;
+    margin-top: 10px;
+    height: 30%;
+    width: 25%;
+    border-radius: 10px;
+    border: 2px solid black;
+    text-align: center;
+    box-shadow: 0px 0px 1px 100rem rgba(0, 0, 0, 0.6);
+}
+.loginm form h2{
+    margin: 8px 0px;
+}
+.loginm form label{
+    font-size: 20px;
+    padding: 5px 16px;
+}
+.loginm form input{
+    font-size: 17px;
+    padding: 5px 16px;
+    margin: 10px 0px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+.log-btn{
+    margin-top: 10px;
+    padding: 5px 7px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 19px;
+}
+.signinm{
+    display: none;
+}
+.main h1{
+    text-align: center;
+    font-size: 33px;
+    margin-bottom: 10px;
+    padding-top: 20px;
+    color: antiquewhite;
+}
+.main{
+    margin: auto;
+    width: 64%;
+}
+.issue-book h3{
+    font-size: 27px;
+    margin: 9px 0px;
+    color: antiquewhite;
+    border-bottom: 1px solid antiquewhite;
+    width: 16%;
+}
+.book_list-btn{
+    margin: 9px 0px;
+    padding: 5px 7px;
+    font-size: 19px;
+    border: 1px solid yellow;
+    border-radius: 6px;
+    background-color: rgb(0, 255, 149);
+    cursor: pointer;
+    color: rgb(143, 9, 9);
+}
+label{
+    margin: 8px 0px;
+    font-size: 18px;
+    color: antiquewhite;
+}
+input{
+    width: 70%;
+    font-size: 16px;
+    height: 1.8rem;
+    color: black;
+    margin: 4px 0px;
+}
+.issue_book-btn{
+    margin: 9px 0px;
+    padding: 5px 7px;
+    font-size: 19px;
+    border: 1px solid yellow;
+    border-radius: 6px;
+    background-color: rgb(0, 255, 149);
+    cursor: pointer;
+    color: rgb(143, 9, 9);
+}
+.return_book-btn{
+    margin: 9px 0px;
+    padding: 5px 7px;
+    font-size: 19px;
+    border: 1px solid yellow;
+    border-radius: 6px;
+    color: rgb(143, 9, 9);
+    background-color: rgb(0, 255, 149);
+    cursor: pointer;
+}
+.donate_book-btn{
+    margin: 9px 0px;
+    padding: 5px 7px;
+    font-size: 19px;
+    border: 1px solid yellow;
+    border-radius: 6px;
+    background-color: rgb(0, 255, 149);
+    color: rgb(143, 9, 9);
+    cursor: pointer;
+}
+.donate_book-btn:hover{
+    background-color: rgb(143, 9, 9);
+    color: rgb(0, 255, 149);
+}
+.book_list-btn:hover{
+    background-color: rgb(143, 9, 9);
+    color: rgb(0, 255, 149);
+}
+.issue_book-btn:hover{
+    background-color: rgb(143, 9, 9);
+    color: rgb(0, 255, 149);
+}
+.return_book-btn:hover{
+    background-color: rgb(143, 9, 9);
+    color: rgb(0, 255, 149);
+}
+.return-book h3{
+    font-size: 27px;
+    margin: 9px 0px;
+    color: antiquewhite;
+    border-bottom: 1px solid antiquewhite;
+    width: 19%;
+}
+.donate-book h3{
+    font-size: 27px;
+    margin: 9px 0px;
+    color: antiquewhite;
+    border-bottom: 1px solid antiquewhite;
+    width: 19%;
+}
+.donor_list h3{
+    font-size: 27px;
+    margin: 9px 0px;
+    color: antiquewhite;
+    border-bottom: 1px solid antiquewhite;
+    width: 16%;
+}
+.book_cats h4{
+    font-size: 22px;
+    margin: 5px 0px;
+    color: antiquewhite;
+}
+.book_cats input{
+    width: 4%;
+    height: 1rem;
+    margin-top: 6px;
+    cursor: pointer;
+}
+table{
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    margin: 4px 0px;
+    color: antiquewhite;
+}
+tr{
+    height: 48px;
+}
+.cont{
+    background-color: rgba(22, 22, 53, 0.801);
+}
+#book_list{
+    padding: 8px 15px;
+    color: antiquewhite;
+    font-size: 18px;
+}
+#book_list li{
+    margin: 6px 0px;
+}
+html{
+    scroll-behavior: smooth;
+}

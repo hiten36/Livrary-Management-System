@@ -1,0 +1,51 @@
+.box1{
+    display: flex;
+    flex-direction: row;
+    height: 30%;
+    background-color: rgba(22, 22, 53, 0.801);
+    color: blanchedalmond;
+}
+.main{
+    text-align: center;
+    padding: 10px 0px;
+    background-color: rgba(22, 22, 53, 0.801);
+}
+.main h1{
+    padding: 20px 0px;
+    font-size: 40px;
+    color: blanchedalmond;
+}
+.main p{
+    font-size: 20px;
+    margin-bottom: 13px;
+    color: blanchedalmond;
+}
+.go-btn{
+    padding: 7px 21px;
+    border: 1px solid yellow;
+    background-color: rgb(15, 156, 15);
+    color: aliceblue;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.go-btn:hover{
+    background-color: rgb(90, 172, 90);
+}
+.text{  
+    text-align: center;
+    width: 50%;
+    font-size: 20px;
+}
+.img{
+    text-align: center;
+    width: 50%;
+}
+.text p{
+    padding: 45px 0px;
+    margin: auto;
+    width: 50%;
+}
+.box11{
+    padding-top: 5rem;
+}

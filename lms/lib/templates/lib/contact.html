@@ -1,0 +1,71 @@
+{% extends 'lib/basic.html' %}
+{% block title %}Contact Us{% endblock %}
+{% block css %}
+<style>
+    .con-box{
+        width: 65%;
+        margin: auto;
+    }
+    .con-box h1{
+        text-align: center;
+        font-size: 38px;
+        color: antiquewhite;
+    }
+    .con-box1 form{
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+    }
+    input{
+        height: 2rem;
+        border-radius: 8px;
+        border: 1px solid black;
+        font-size: 17px;
+    }
+    label{
+        color: antiquewhite;
+        padding: 6px 0px;
+        margin-top: 10px;
+        padding-left: 2px;
+    }
+    textarea{
+        border: 1px solid black;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    .sub{
+        padding: 5px 12px;
+        font-size: 19px;
+        border: none;
+        border-radius: 8px;
+        background-color: orange;
+        color: black;
+        margin-top: 7px;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div style="background-color: rgba(22, 22, 53 ,0.801); height: 89vh;">
+    <div class="con-box">
+        <h1>Contact Us</h1>
+        <div class="con-box1">
+            <form action="" method="POST">{% csrf_token %}
+                <label for="user">Name</label>
+                <input type="text" name="user" id="user" placeholder="Enter your name">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="Enter your email address">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" name="phone" placeholder="Enter your phone number">
+                <label for="location">City</label>
+                <input type="text" id="location" name="location" placeholder="Enter Your city">
+                <label for="desc">Describe Your Issue</label>
+                <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Write here.."></textarea>
+                <div style="text-align: center;">
+                    <button class="sub" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

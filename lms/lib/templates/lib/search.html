@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'lib/style.css' %}">
+    <title>Library</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="ul">
+            <li class="list"><a href="/">Home</a> </li>
+            <li class="list"><a href="">Library</a> </li>
+            <li class="list"><a href=""><img height="60px" width="80px" src="/static/lib/logo.png" alt=""></a></li>
+            <li class="list"><a href="/library/about">About Us</a> </li>
+            <li class="list"><a href="/library/contact">Contact Us</a> </li>
+            <div class="search">
+                <form action="/library" method="GET">
+                    <input type="text">
+                    <button class="search-btn"><h4>Search</h4></button>
+                </form>
+                {% if user.is_authenticated %}
+                <h4 style="color: antiquewhite; padding: 0px 4px;">Welcome {{request.user}}</h4>
+                <a href="logout" id="logout" class="login">Logout</a>
+                {% else %}
+                <button id="login" class="login">Login</button>
+                <button id="signin" class="login">Sign Up</button>
+                {% endif %}
+            </div>
+        </ul>
+    </nav>
+    <div id="mlogin" class="loginm">
+        <form action="login" method="POST">{% csrf_token %}
+            <div style="display: flex;justify-content: center;align-items: center;">
+                <h2 style="color: antiquewhite;">Login Now</h2><span style="position: absolute;right: 5%;font-size: 24px;cursor: pointer; color: antiquewhite;" class="close">&#10006;</span>
+            </div>
+            <hr>
+            <div style="margin-top: 10px;">
+                <label for="user1">Username</label>
+                <input placeholder="Enter Your Username" type="text" name="user1" id="user1">
+            </div>
+            <div>
+                <label for="pass1">Password</label>
+                <input placeholder="Enter Your Password" type="text" name="pass1" id="pass1">
+            </div>
+            <button class="log-btn" type="submit">Login</button>
+        </form>
+    </div>
+    <div style="height: 39%;" id="msignin" class="loginm">
+        <form action="signin" method="POST">{% csrf_token %}
+            <div style="display: flex;justify-content: center;align-items: center;">
+                <h2 style="color: antiquewhite;">SignUp Now</h2><span style="position: absolute;right: 5%;font-size: 24px;cursor: pointer; color: antiquewhite;" class="close1">&#10006;</span>
+            </div>
+            <hr>
+            <div style="margin-top: 10px;">
+                <label for="user2">Username</label>
+                <input placeholder="Enter Your Username" type="text" name="user2" id="user2">
+            </div>
+            <div>
+                <label for="pass2">Password</label>
+                <input placeholder="Choose A Password" type="text" name="pass2" id="pass2">
+            </div>
+            <div>
+                <label for="cpass2">Confirm Password</label>
+                <input placeholder="Enter Password Again" type="text" name="cpass2" id="cpass2">
+            </div>
+            <button class="log-btn" type="submit">Sign Up</button>
+        </form>
+    </div>
+    <div id="message-box1" style="background-color: rgba(22, 22, 53 ,0.801); display: none;">
+        <div style="background-color: yellow; margin-left: 18%; border-radius: 10px; padding-left: 20px; display: inline-flex;  align-items: center; font-size: 19px; padding-top: 8px; padding-bottom: 8px; padding-right: 17px;">
+            <b style="margin-right: 4px;">Message :</b><p id="mess-para" style="margin-left: 2px;">{{message}}</p>
+        </div>
+    </div>
+    <div id="message-box" style="background-color: rgba(22, 22, 53 ,0.801);">
+        {% for message in messages %}
+        <div style="background-color: yellow; margin-left: 18%; border-radius: 10px; padding-left: 20px; display: inline-flex;  align-items: center; font-size: 19px; padding-top: 8px; padding-bottom: 8px; padding-right: 17px;">
+            <b style="margin-right: 4px;">Message :</b><p style="margin-left: 2px;">{{message}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="cont">
+        <h1 style="color:antiquewhite">Search Results for: <b>{{query}}</b></h1>
+        {% if query == '' %}
+        <h4 style="color: antiquewhite;">Please dont leave search Blank</h4>
+        {% else %}
+        
+        {% if posts|length == 0 %}
+        <h3 style="color: antiquewhite;">No search Results found for <b>{{query}}</b></h3>
+        <h4 style="color: antiquewhite;">Search Help:</h4>
+        <ul>
+            <li style="color: antiquewhite;">Check your search for typos</li>
+            <li style="color: antiquewhite;">Use more generic items</li>
+            <li style="color: antiquewhite;">The Blog your are searching may be removed from our website or not yet been uploaded</li>
+            <li style="color: antiquewhite;">Need more search help. <a style="color: azure;" href="/library/contact">Contact Us</a></li>
+        </ul>
+        {% endif %}
+        {% endif %}
+        <div class="main">
+            <h1>Welcome To Library</h1>
+            <div class="issue-book">
+                <h3>Issuing Section</h3>
+                <button class="book_list-btn">Get Book List</button>
+                <div>
+                    <div style="display: flex; flex-direction: column;">
+                        <label for="book_name">Enter the name of the book you want to issue: </label>
+                        <input placeholder="Book Name" type="text" id="book_name" required>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <label for="user_name">Enter Your Name: </label>
+                        <input placeholder="User Name" type="text" id="user_name" required>
+                    </div>
+                    <h2 id="avail" style="color: antiquewhite; margin: 5px 0px; display: none;">List of Available books are - </h2>
+                    <ol id="book_list"></ol>
+                </div>
+                <button class="issue_book-btn">Issue Book</button>
+            </div>
+            <div class="return-book">
+                <h3>Returning Section</h3>
+                <div>
+                    <div style="display: flex; flex-direction: column;">
+                        <label for="book_name1">Enter the name of the book you want to return: </label>
+                        <input placeholder="Book Name" type="text" id="book_name1" required>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <label for="user_name1">Enter Your Name: </label>
+                        <input placeholder="User Name" type="text" id="user_name1" required>
+                    </div>
+                    <div id="booot_list"></div>
+                </div>
+                <button class="return_book-btn">Return Book</button>
+            </div>
+            <div class="donate-book">
+                <h3>Donating Section</h3>
+                <div>
+                    <form action="" method="POST">{% csrf_token %}
+                        <div style="display: flex; flex-direction: column;">
+                            <label for="user_name2">Enter Your Name: </label>
+                            <input placeholder="User Name" type="text" id="user_name2" required>
+                        </div>
+                        <div style="display: flex; flex-direction: column;">
+                            <label for="user_name2">Enter Book Name: </label>
+                            <input placeholder="Book Name" type="text" id="book_name2" required>
+                        </div>
+                        <div class="book_cats">
+                            <h4>Choose Book Category</h4>
+                            <div style="display: flex; flex-direction: column;">
+                                <div>
+                                    <input type="radio" name="book_cat" id="cat1">
+                                    <label for="cat1">Action</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="book_cat" id="cat2">
+                                    <label for="cat2">Sci-Fi</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="book_cat" id="cat3">
+                                    <label for="cat3">Romance</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="book_cat" id="cat4">
+                                    <label for="cat4">Kids</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="book_cat" id="cat5">
+                                    <label for="cat5">Education</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="donate_book-btn">Donate Book</button>
+                    </form>
+                </div>
+            </div>
+            <div class="donor_list">
+                <h3>Book Donators</h3>
+                <table border=1 frame=void rules=rows>
+                    <thead>
+                        <tr>
+                            <th>Sno.</th>
+                            <th>Name of donator</th>
+                            <th>Name of book</th>
+                            <th>Book category</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        {% for i in posts %}
+                        <tr>
+                            <td>{{i.don_id}}</td>
+                            <td>{{i.don_user_name}}</td>
+                            <td>{{i.don_book_name}}</td>
+                            <td>{{i.don_book_cat}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+{% load static %}
+<script src="{% static 'lib/script.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</html>
